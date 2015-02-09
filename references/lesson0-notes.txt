@@ -1,0 +1,7 @@
+# Lesson 0 - Getting Up and Running
+
+jquery - javascript library that makes it easier to manipulates html
+
+## javascript commands
+
+`console.log()` - prints a string to the console; does not create any savable data => no return value
