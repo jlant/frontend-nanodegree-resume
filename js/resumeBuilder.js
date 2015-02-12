@@ -146,3 +146,27 @@ var projects = {
 	]
 }
 
+
+if (bio["skills"].length > 0) {
+
+	$("#header").append(HTMLskillsStart);
+
+	var formatted_skill_0 = HTMLskills.replace("%data%", bio["skills"][0]);
+	$("#skills").append(formatted_skill_0);
+
+	var formatted_skill_1 = HTMLskills.replace("%data%", bio["skills"][1]);
+	$("#skills").append(formatted_skill_1);
+
+	var formatted_skill_2 = HTMLskills.replace("%data%", bio["skills"][2]);
+	$("#skills").append(formatted_skill_2);
+
+	var formatted_skill_3 = HTMLskills.replace("%data%", bio["skills"][3]);
+	$("#skills").append(formatted_skill_3);
+
+	var formatted_skill_4 = HTMLskills.replace("%data%", bio["skills"][4]);
+	$("#skills").append(formatted_skill_4);
+
+	var formatted_skill_5 = HTMLskills.replace("%data%", bio["skills"][5]);
+	$("#skills").append(formatted_skill_5);
+
+}
