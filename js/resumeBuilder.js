@@ -175,23 +175,16 @@ if (bio["skills"].length > 0) {
 		var formatted_skill = HTMLskills.replace("%data%", bio["skills"][skill]);
 		$("#skills").append(formatted_skill);
 	}
+}
 
-	// var formatted_skill_0 = HTMLskills.replace("%data%", bio["skills"][0]);
-	// $("#skills").append(formatted_skill_0);
+if (work["jobs"].length > 0) {
 
-	// var formatted_skill_1 = HTMLskills.replace("%data%", bio["skills"][1]);
-	// $("#skills").append(formatted_skill_1);
+	for (job in work["jobs"]) {
 
-	// var formatted_skill_2 = HTMLskills.replace("%data%", bio["skills"][2]);
-	// $("#skills").append(formatted_skill_2);
+		$("#workExperience").append(HTMLworkStart)
 
-	// var formatted_skill_3 = HTMLskills.replace("%data%", bio["skills"][3]);
-	// $("#skills").append(formatted_skill_3);
-
-	// var formatted_skill_4 = HTMLskills.replace("%data%", bio["skills"][4]);
-	// $("#skills").append(formatted_skill_4);
-
-	// var formatted_skill_5 = HTMLskills.replace("%data%", bio["skills"][5]);
-	// $("#skills").append(formatted_skill_5);
-
+		var formatted_job = HTMLworkEmployer.replace("%data%", work["jobs"][job]["employer"])
+		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"])
+		$(".work-entry:last").append(formatted_job + formatted_title)
+	}
 }
