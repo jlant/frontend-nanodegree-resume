@@ -1,7 +1,7 @@
 // resume objects
 var bio = {
 	"name": "Jeremiah Lant",
-	"role": "Programmer and Full Stack Web Developer",
+	"role": "Hydrologist, Programmer, and Full Stack Web Developer",
 	"contacts": {
 		"mobile": "502-338-3156",
 		"email": "jeremiahlant@gmail.com",
@@ -146,27 +146,52 @@ var projects = {
 	]
 }
 
+// main
+formatted_name = HTMLheaderName.replace("%data%", bio["name"])
+formatted_role = HTMLheaderRole.replace("%data%", bio["role"])
+formatted_bio_pic = HTMLbioPic.replace("%data%", bio["bio_pic"])
+formatted_welcome_msg = HTMLWelcomeMsg.replace("%data%", bio["welcome_msg"])
+formatted_mobile = HTMLmobile.replace("%data%", bio["contacts"]["mobile"])
+formatted_email = HTMLemail.replace("%data%", bio["contacts"]["email"])
+formatted_github = HTMLgithub.replace("%data%", bio["contacts"]["github"])
+formatted_twitter = HTMLtwitter.replace("%data%", bio["contacts"]["twitter"])
+formatted_location = HTMLlocation.replace("%data%", bio["contacts"]["location"])
+
+$("#header").prepend(formatted_role)
+$("#header").prepend(formatted_name)
+$("#header").append(formatted_bio_pic)
+$("#header").append(formatted_welcome_msg)
+$("#topContacts").append(formatted_mobile)
+$("#topContacts").append(formatted_email)
+$("#topContacts").append(formatted_github)
+$("#topContacts").append(formatted_twitter)
+$("#topContacts").append(formatted_location)
 
 if (bio["skills"].length > 0) {
 
 	$("#header").append(HTMLskillsStart);
 
-	var formatted_skill_0 = HTMLskills.replace("%data%", bio["skills"][0]);
-	$("#skills").append(formatted_skill_0);
+	for (skill in bio["skills"]) {
+		var formatted_skill = HTMLskills.replace("%data%", bio["skills"][skill]);
+		$("#skills").append(formatted_skill);
+	}
 
-	var formatted_skill_1 = HTMLskills.replace("%data%", bio["skills"][1]);
-	$("#skills").append(formatted_skill_1);
+	// var formatted_skill_0 = HTMLskills.replace("%data%", bio["skills"][0]);
+	// $("#skills").append(formatted_skill_0);
 
-	var formatted_skill_2 = HTMLskills.replace("%data%", bio["skills"][2]);
-	$("#skills").append(formatted_skill_2);
+	// var formatted_skill_1 = HTMLskills.replace("%data%", bio["skills"][1]);
+	// $("#skills").append(formatted_skill_1);
 
-	var formatted_skill_3 = HTMLskills.replace("%data%", bio["skills"][3]);
-	$("#skills").append(formatted_skill_3);
+	// var formatted_skill_2 = HTMLskills.replace("%data%", bio["skills"][2]);
+	// $("#skills").append(formatted_skill_2);
 
-	var formatted_skill_4 = HTMLskills.replace("%data%", bio["skills"][4]);
-	$("#skills").append(formatted_skill_4);
+	// var formatted_skill_3 = HTMLskills.replace("%data%", bio["skills"][3]);
+	// $("#skills").append(formatted_skill_3);
 
-	var formatted_skill_5 = HTMLskills.replace("%data%", bio["skills"][5]);
-	$("#skills").append(formatted_skill_5);
+	// var formatted_skill_4 = HTMLskills.replace("%data%", bio["skills"][4]);
+	// $("#skills").append(formatted_skill_4);
+
+	// var formatted_skill_5 = HTMLskills.replace("%data%", bio["skills"][5]);
+	// $("#skills").append(formatted_skill_5);
 
 }
