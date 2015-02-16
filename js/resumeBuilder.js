@@ -180,11 +180,20 @@ if (bio["skills"].length > 0) {
 if (work["jobs"].length > 0) {
 
 	for (job in work["jobs"]) {
+		// create a new div for work experience
+		$("#workExperience").append(HTMLworkStart);
 
-		$("#workExperience").append(HTMLworkStart)
+		// concat employer and title
+		var formatted_job = HTMLworkEmployer.replace("%data%", work["jobs"][job]["employer"]);
+		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"]);
+		var formatted_dates = HTMLworkDates.replace("%data%", work["jobs"][job]["dates"]);
+		var formatted_location = HTMLworkLocation.replace("%data%", work["jobs"][job]["location"]);
+		var formatted_description = HTMLworkDescription.replace("%data%", work["jobs"][job]["description"]);
 
-		var formatted_job = HTMLworkEmployer.replace("%data%", work["jobs"][job]["employer"])
-		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"])
-		$(".work-entry:last").append(formatted_job + formatted_title)
+		$(".work-entry:last").append(formatted_job + formatted_title);
+		$(".work-entry:last").append(formatted_dates)
+		$(".work-entry:last").append(formatted_location)
+		$(".work-entry:last").append(formatted_description)		
 	}
 }
+
