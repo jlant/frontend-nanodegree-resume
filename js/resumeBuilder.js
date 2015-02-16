@@ -146,6 +146,61 @@ var projects = {
 	]
 }
 
+function display_work() {
+
+	for (job in work["jobs"]) {
+		// create a new div for work experience
+		$("#workExperience").append(HTMLworkStart);
+
+		// concat employer and title
+		var formatted_job = HTMLworkEmployer.replace("%data%", work["jobs"][job]["employer"]);
+		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"]);
+		var formatted_dates = HTMLworkDates.replace("%data%", work["jobs"][job]["dates"]);
+		var formatted_location = HTMLworkLocation.replace("%data%", work["jobs"][job]["location"]);
+		var formatted_description = HTMLworkDescription .replace("%data%", work["jobs"][job]["description"]);
+
+		// append the info to the work section of the page
+		$(".work-entry:last").append(formatted_job + formatted_title);
+		$(".work-entry:last").append(formatted_dates)
+		$(".work-entry:last").append(formatted_location)
+		$(".work-entry:last").append(formatted_description)		
+	}	
+}
+
+function locationizer(work_obj) {
+    var location_arr = [];
+ 
+    for (job in work_obj.jobs) {
+        location_arr.push(work_obj.jobs[job].location);
+    }
+    return location_arr;
+}
+
+function inName(name) {
+
+	// remove whitespace from front and back
+	name = name.trim().split(" ");
+	first_name = name[0].slice(0, 1).toUpperCase() + name[0].slice(1).toLowerCase();
+	last_name = name[1].toUpperCase();
+
+	internationalized_name = first_name + " " + last_name;
+
+	return internationalized_name;
+}
+
+console.log(inName("jeremiah lant"))
+
+$("#main").append(internationalizeButton);
+
+// log click locations
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+	logClicks(x, y);
+});
+
+
 // main
 formatted_name = HTMLheaderName.replace("%data%", bio["name"])
 formatted_role = HTMLheaderRole.replace("%data%", bio["role"])
@@ -179,21 +234,9 @@ if (bio["skills"].length > 0) {
 
 if (work["jobs"].length > 0) {
 
-	for (job in work["jobs"]) {
-		// create a new div for work experience
-		$("#workExperience").append(HTMLworkStart);
-
-		// concat employer and title
-		var formatted_job = HTMLworkEmployer.replace("%data%", work["jobs"][job]["employer"]);
-		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"]);
-		var formatted_dates = HTMLworkDates.replace("%data%", work["jobs"][job]["dates"]);
-		var formatted_location = HTMLworkLocation.replace("%data%", work["jobs"][job]["location"]);
-		var formatted_description = HTMLworkDescription.replace("%data%", work["jobs"][job]["description"]);
-
-		$(".work-entry:last").append(formatted_job + formatted_title);
-		$(".work-entry:last").append(formatted_dates)
-		$(".work-entry:last").append(formatted_location)
-		$(".work-entry:last").append(formatted_description)		
-	}
+	display_work();
 }
 
+
+locations = locationizer(work);
+console.log(locations)
