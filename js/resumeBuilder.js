@@ -116,37 +116,51 @@ var projects = {
 		{
 			"title": "Flood-Inundation Maps for a 6.5-Mile Reach of the Kentucky River at Frankfort, Kentucky",
 			"dates": 2014,
-			"images": "http://pubs.usgs.gov/sim/3278/"
+			"description": "Flood inundation modeling",
+			"images": ["images/197x148.gif", "images/197x148.gif"]
 		},
 		{
 			"title": "Flood-Inundation Maps for an 8.9-Mile Reach of the South Fork Little River at Hopkinsville, Kentucky",
 			"dates": 2013,
-			"images": "http://pubs.usgs.gov/sim/3242/"
+			"description": "Flood inundation modeling",
+			"images": ["images/197x148.gif"]
 		},
 		{
 			"title": "waterapputils",
 			"dates": 2015,
-			"images": "https://github.com/jlant-usgs/waterapputils"
+			"description": "Python project for Delaware River Basin that adds water use and climage change capabilities to an application developed at the KYWSC called WATER. Command line and graphical user interfaces.",
+			"images": ["images/197x148.gif"]
 		},
 		{
 			"title": "nwispy",
 			"dates": 2014,
-			"images": "https://github.com/jlant-usgs/nwispy"
+			"description": "Python project to get and process USGS National Water Information Systems (NWIS) data. Command line and graphical user interfaces.",
+			"images": ["images/197x148.gif"]
 		},
 		{
 			"title": "hydrocomp",
 			"dates": 2014,
-			"images": "https://github.com/jlant-usgs/hydrocomp"
+			"description": "Python project to compare a hydrologic model's output with USGS National Water Information Systems (NWIS) data. Command line and graphical user interfaces.",
+			"images": ["images/197x148.gif"]
 		},
 		{
 			"title": "scientific-computing-group",
 			"dates": 2014,
-			"images": "https://github.com/jlant-usgs/scientific-computing-group"
+			"description": "Project to teach and continue to learn best practices in scientific computing; Unix commands, Version control with Git and GitHub, Python programming",
+			"images": ["images/197x148.gif"]
+
+		},
+		{
+			"title": "wateruse-map-d3",
+			"dates": 2015,
+			"description": "Web development and data visualization project using D3.js using 2010 USGS water use data",
+			"images": ["images/197x148.gif"]
 		}
 	]
 }
 
 function display_work() {
+	// display work section
 
 	for (job in work["jobs"]) {
 		// create a new div for work experience
@@ -157,7 +171,7 @@ function display_work() {
 		var formatted_title = HTMLworkTitle.replace("%data%", work["jobs"][job]["title"]);
 		var formatted_dates = HTMLworkDates.replace("%data%", work["jobs"][job]["dates"]);
 		var formatted_location = HTMLworkLocation.replace("%data%", work["jobs"][job]["location"]);
-		var formatted_description = HTMLworkDescription .replace("%data%", work["jobs"][job]["description"]);
+		var formatted_description = HTMLworkDescription.replace("%data%", work["jobs"][job]["description"]);
 
 		// append the info to the work section of the page
 		$(".work-entry:last").append(formatted_job + formatted_title);
@@ -168,6 +182,8 @@ function display_work() {
 }
 
 function locationizer(work_obj) {
+	// return array of work locations
+
     var location_arr = [];
  
     for (job in work_obj.jobs) {
@@ -177,6 +193,7 @@ function locationizer(work_obj) {
 }
 
 function inName(name) {
+	// return an internalized name; i.e. Jeremiah Lant -> Jeremiah LANT
 
 	// remove whitespace from front and back
 	name = name.trim().split(" ");
@@ -187,18 +204,6 @@ function inName(name) {
 
 	return internationalized_name;
 }
-
-console.log(inName("jeremiah lant"))
-
-$("#main").append(internationalizeButton);
-
-// log click locations
-$(document).click(function(loc) {
-	var x = loc.pageX;
-	var y = loc.pageY;
-
-	logClicks(x, y);
-});
 
 
 // main
@@ -237,6 +242,49 @@ if (work["jobs"].length > 0) {
 	display_work();
 }
 
+// encapsulate a display method in projects object
+projects.display = function() {
+	
+	for (project in projects["projects"]) {
+		$("#projects").append(HTMLprojectStart);
 
+		// concat employer and title
+		var formatted_title = HTMLprojectTitle.replace("%data%", projects["projects"][project]["title"]);
+		var formatted_dates = HTMLprojectDates.replace("%data%", projects["projects"][project]["dates"]);
+		var formatted_description = HTMLprojectDescription.replace("%data%", projects["projects"][project]["description"]);
+
+		// append the info to the project section of the page
+		$(".project-entry:last").append(formatted_title);
+		$(".project-entry:last").append(formatted_dates);
+		$(".project-entry:last").append(formatted_description);
+
+		console.log(projects.projects[project].description)
+
+		if (projects.projects[project].images.length > 0) {
+			for (image in projects.projects[project].images) {
+				var formatted_image = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+				$(".project-entry:last").append(formatted_image);
+			}
+		}
+	}	
+}
+
+projects.display()
+
+$("#mapDiv").append(googleMap);
+
+// extras
 locations = locationizer(work);
 console.log(locations)
+
+console.log(inName("jeremiah lant"))
+
+$("#main").append(internationalizeButton);
+
+// log click locations
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+	logClicks(x, y);
+});
